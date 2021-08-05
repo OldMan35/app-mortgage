@@ -13,9 +13,9 @@ import javax.validation.constraints.Size;
 @Table(name = "Seller_Individuals")
 public class SellerIndividuals {
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "buyer_id", insertable=false, updatable=false)
-    private Buyer buyer;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "buyer_id", insertable=false, updatable=false)
+//    private Buyer buyer;
 
     @Id
     @GeneratedValue
