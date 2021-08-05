@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 public class SellerLegalEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "buyer_id")
+    @JoinColumn(name = "BUYER_ID", insertable = false, updatable = false)
     private Buyer buyer;
 
     @Id
@@ -34,8 +34,8 @@ public class SellerLegalEntity {
     @Column(name = "ownership_rights")
     private String ownershipRights;
 
-    @Column(name = "buyer_id")
-    private int buyerId;
+    @Column(name = "BUYER_ID")
+    private int buyerIdLe;
 
     @NotEmpty(message = "Обязательное для заполнения поле.")
     @Column(name = "inn", unique = true, nullable = false)

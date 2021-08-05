@@ -60,5 +60,4 @@ public class Buyer {
     @Min(value = 12, message = "Неккоретное значение ИНН.")
     @Max(value = 12, message = "Неккоретное значение ИНН.")
     private int inn;
-
 }
