@@ -10,10 +10,11 @@ import javax.validation.constraints.*;
 @Table(name = "Buyer")
 public class Buyer {
 
-    @OneToOne
-    @JoinColumn
+    @OneToOne(mappedBy = "buyer", cascade = CascadeType.ALL)
     private SellerIndividuals sellerIndividuals;
 
+    @OneToOne(mappedBy = "buyer", cascade = CascadeType.ALL)
+    private SellerLegalEntity sellerLegalEntity;
 
     @Id
     @GeneratedValue
@@ -55,8 +56,9 @@ public class Buyer {
     private int costObject;
 
     @NotEmpty(message = "Обязательное для заполнения поле.")
-    @Column(name = "inn")
+    @Column(name = "inn", unique = true, nullable = false)
     @Min(value = 12, message = "Неккоретное значение ИНН.")
     @Max(value = 12, message = "Неккоретное значение ИНН.")
     private int inn;
+
 }

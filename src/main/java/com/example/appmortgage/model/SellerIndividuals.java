@@ -13,6 +13,10 @@ import javax.validation.constraints.Size;
 @Table(name = "Seller_Individuals")
 public class SellerIndividuals {
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "buyer_id")
+    private Buyer buyer;
+
     @Id
     @GeneratedValue
     private int id;
@@ -38,12 +42,11 @@ public class SellerIndividuals {
     @Column(name = "ownership_rights")
     private String ownershipRights;
 
-
     @Column(name = "buyer_id")
     private int buyerId;
 
     @NotEmpty(message = "Обязательное для заполнения поле.")
-    @Column(name = "inn")
+    @Column(name = "inn", unique = true, nullable = false)
     @Min(value = 12, message = "Неккоретное значение ИНН.")
     @Max(value = 12, message = "Неккоретное значение ИНН.")
     private int inn;
