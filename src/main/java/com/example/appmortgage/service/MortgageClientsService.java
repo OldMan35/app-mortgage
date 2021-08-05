@@ -21,7 +21,7 @@ public class MortgageClientsService {
         return mortgageClientsRepository.findAll();
     }
 
-    public MortgageClients create(MortgageClients buyer) {
-        return mortgageClientsRepository.save(buyer);
+    public MortgageClients create(MortgageClients mortgageClients) {
+        return mortgageClientsRepository.save(mortgageClients);
     }
 }

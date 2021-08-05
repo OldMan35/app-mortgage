@@ -3,6 +3,10 @@ package com.example.appmortgage.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -13,44 +17,70 @@ public class MortgageClients {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-//    @NotEmpty(message = "Обязательное для заполнения поле.")
-//    @Column(name = "name")
-    private String name;
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "name_of_buyers")
+    private String nameOfBuyers;
 
-//    @NotEmpty(message = "Обязательное для заполнения поле.")
-//    @Column(name = "patronymic")
-    private String patronymic;
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "patronymic_of_buyers")
+    private String patronymicOfBuyers;
 
-//    @NotEmpty(message = "Обязательное для заполнения поле.")
-//    @Column(name = "surname")
-    private String surname;
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "surname_of_buyers")
+    private String surnameOfBuyers;
 
-//    @NotEmpty(message = "Обязательное для заполнения поле.")
-//    @Column(name = "phone_number")
-//    @Size(min = 11, max = 12, message = "Неккоректно введен номер телефона.")
-    private String phoneNumber;
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "phone_number_of_buyers")
+    private long phoneNumberOfBuyers;
 
-//    @NotEmpty(message = "Обязательное для заполнения поле.")
-//    @Column(name = "loan_amount")
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "loan_amount")
     private String loanAmount;
 
-//    @NotEmpty(message = "Обязательное для заполнения поле.")
-//    @Column(name = "loan_term")
-//    @Min(value = 3, message = "Неккоретное значение. Срок кредита не может быть менее 3 лет.")
-//    @Max(value = 30, message = "Неккоретное значение. Срок кредита не может быть более 30 лет")
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "loan_term")
     private int loanTerm;
 
-//    @NotEmpty(message = "Обязательное для заполнения поле.")
-//    @Column(name = "estate_object")
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "estate_object")
     private String estateObject;
 
-//    @NotEmpty(message = "Обязательное для заполнения поле.")
-//    @Column(name = "cost_object")
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "cost_object")
     private int costObject;
 
-//    @NotEmpty(message = "Обязательное для заполнения поле.")
-//    @Column(name = "inn", unique = true, nullable = false)
-//    @Min(value = 12, message = "Неккоретное значение ИНН.")
-//    @Max(value = 12, message = "Неккоретное значение ИНН.")
-    private int inn;
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "inn_of_buyers")
+    @Size(min = 12, max = 12, message = "Неккоретное значение ИНН.")
+    private String innOfBuyers;
+
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "name_of_sellers")
+    private String nameOfSellers;
+
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "patronymic_of_sellers")
+    private String patronymicOfSellers;
+
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "surname_of_sellers")
+    private String surnameOfSellers;
+
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Size(min = 12, max = 12, message = "Неккоретное значение ИНН.")
+    @Column(name = "inn_ind")
+    private String innInd;
+
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "name_organization")
+    private String nameOrganization;
+
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "inn_org")
+    @Size(min = 10, max = 10, message = "Неккоретное значение ИНН.")
+    private String innOrg;
+
+    @NotNull(message = "Обязательное для заполнения поле.")
+    @Column(name = "own_rights")
+    private String ownRights;
 }
