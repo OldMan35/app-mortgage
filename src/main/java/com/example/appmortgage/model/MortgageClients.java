@@ -3,18 +3,11 @@ package com.example.appmortgage.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 @Data
 @Entity
-@Table(name = "Buyer")
-public class Buyer {
-
-//    @OneToOne(mappedBy = "buyer", cascade = CascadeType.ALL)
-//    private SellerIndividuals sellerIndividuals;
-//
-//    @OneToOne(mappedBy = "buyer", cascade = CascadeType.ALL)
-//    private SellerLegalEntity sellerLegalEntity;
+@Table(name = "mortgage_clients")
+public class MortgageClients {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
