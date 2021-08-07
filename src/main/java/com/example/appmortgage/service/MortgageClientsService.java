@@ -2,6 +2,7 @@ package com.example.appmortgage.service;
 
 import com.example.appmortgage.model.MortgageClients;
 import com.example.appmortgage.repository.MortgageClientsRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,11 @@ public class MortgageClientsService {
     }
 
     public List<MortgageClients> findAll() {
+
         return mortgageClientsRepository.findAll();
     }
 
-    public MortgageClients create(MortgageClients mortgageClients) {
-        return mortgageClientsRepository.save(mortgageClients);
+    public void create(MortgageClients mortgageClients) {
+        mortgageClientsRepository.save(mortgageClients);
     }
 }
