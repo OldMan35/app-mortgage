@@ -29,7 +29,7 @@ public class MortgageController extends RuntimeException {
         this.organizationInnValidationService = organizationInnValidationService;
     }
 
-    @GetMapping(value = "/get-all")
+    @GetMapping(value = "/get-all", produces = "application/json")
     public ResponseEntity<?> getAll() {
         List<MortgageClients> mortgageClientsList = mortgageClientsService.getAll();
         if (mortgageClientsList.size() != 0) {
