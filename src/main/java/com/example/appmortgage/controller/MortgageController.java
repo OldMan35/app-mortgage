@@ -14,12 +14,12 @@ import java.util.List;
 
 
 @RestController
-public class DefaultController {
+public class MortgageController {
 
-    private MortgageClientsService mortgageClientsService;
+    private final MortgageClientsService mortgageClientsService;
 
     @Autowired
-    public DefaultController(MortgageClientsService mortgageClientsService) {
+    public MortgageController(MortgageClientsService mortgageClientsService) {
         this.mortgageClientsService = mortgageClientsService;
     }
 

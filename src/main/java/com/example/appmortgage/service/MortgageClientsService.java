@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class MortgageClientsService {
 
-    private MortgageClientsRepository mortgageClientsRepository;
+    private final MortgageClientsRepository mortgageClientsRepository;
 
     @Autowired
     public MortgageClientsService(MortgageClientsRepository mortgageClientsRepository) {
