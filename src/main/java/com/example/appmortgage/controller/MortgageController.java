@@ -39,8 +39,8 @@ public class MortgageController extends RuntimeException {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping(value = "/create", consumes = {MediaType.ALL_VALUE})
-    public ResponseEntity<?> createMortgageClients(@RequestBody @Valid MortgageClients mortgageClients) {
+    @PostMapping(value = "/create")
+    public ResponseEntity<?> createMortgageClients(@RequestBody MortgageClients mortgageClients) {
         if (individualInnValidationService.validationInn(mortgageClients.getInnInd()) && individualInnValidationService.validationInn(mortgageClients.getInnOfBuyers()) && organizationInnValidationService.validationInn(mortgageClients.getInnOrg())) {
             mortgageClientsService.create(mortgageClients);
             return new ResponseEntity<>(HttpStatus.valueOf("Заявка создана успешно."));
