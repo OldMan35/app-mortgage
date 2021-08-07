@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
 
 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
@@ -85,7 +86,43 @@ public class CreateMortgageRequest {
 
     @Test
     public void testCreateNotValidRequestMortgage() throws Exception {
-
+        MortgageClients mortgageClients = new MortgageClients("Василий",
+                "Васильевич",
+                "Васильев",
+                "89116665533",
+                1500000,
+                5,
+                "квартира",
+                2000000,
+                "502805064090",
+                "Михаил",
+                "Михайлович",
+                "Михайлов",
+                "502805064090",
+                "ООО Рога и копыта",
+                "0000000000",
+                "Выписка из ЕГРН");
+        this.mockMvc.perform(post("/mortgage/create"));
+                .content(objectMapper.writeValueAsString(mortgageClients))
+                .contantType(MediaType.APPLICATION_JSON)
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$id").isNumber())
+                .andExpect(jsonPath("$.nameOfBuyers").value("Василий"))
+                .andExpect(jsonPath("$.patronymicOfBuyers").value("Васильевич"))
+                .andExpect(jsonPath("$.surnameOfBuyers").value("Васильев"))
+                .andExpect(jsonPath("$.phoneNumberOfBuyers").value("89116665533"))
+                .andExpect(jsonPath("$.loanAmount").value("1500000"))
+                .andExpect(jsonPath("$.loanTerm").value("5"))
+                .andExpect(jsonPath("$.estateObject").value("квартира"))
+                .andExpect(jsonPath("$.costObject").value("2000000"))
+                .andExpect(jsonPath("$.innOfBuyers").value("502805064090"))
+                .andExpect(jsonPath("$.nameOfSellers").value("Михаил"))
+                .andExpect(jsonPath("$.patronymicOfSellers").value("Михайлович"))
+                .andExpect(jsonPath("$.surnameOfSellers").value("Михайлов"))
+                .andExpect(jsonPath("$.innInd").value("502805064090"))
+                .andExpect(jsonPath("$.nameOrganization").value("ООО Рога и копыта"))
+                .andExpect(jsonPath("$.innOrg").value("0000000000"))
+                .andExpect(jsonPath("$.ownRights").value("Выписка из ЕГРН"));
     }
 
     @Test
