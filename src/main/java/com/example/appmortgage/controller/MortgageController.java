@@ -3,6 +3,7 @@ package com.example.appmortgage.controller;
 import com.example.appmortgage.model.MortgageClients;
 import com.example.appmortgage.service.MortgageClientsService;
 import com.example.appmortgage.service.IndividualInnValidationService;
+import com.example.appmortgage.service.OrganizationInnValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +17,15 @@ import java.util.List;
 public class MortgageController extends RuntimeException {
 
     private final MortgageClientsService mortgageClientsService;
-    private final IndividualInnValidationService mortgageValidationServiceIndividual;
+    private final IndividualInnValidationService individualInnValidationService;
+    private final OrganizationInnValidationService organizationInnValidationService;
     private final Exception exception = new Exception("Некорректно введен ИНН.");
 
     @Autowired
-    public MortgageController(MortgageClientsService mortgageClientsService, IndividualInnValidationService mortgageValidationService) {
+    public MortgageController(MortgageClientsService mortgageClientsService, IndividualInnValidationService mortgageValidationService, OrganizationInnValidationService organizationInnValidationService) {
         this.mortgageClientsService = mortgageClientsService;
-        this.mortgageValidationServiceIndividual = mortgageValidationService;
+        this.individualInnValidationService = mortgageValidationService;
+        this.organizationInnValidationService = organizationInnValidationService;
     }
 
     @GetMapping(value = "/get-all")
@@ -35,9 +38,9 @@ public class MortgageController extends RuntimeException {
 
     @PostMapping(value = "/create")
     public ResponseEntity<?> createMortgageClients(@RequestBody MortgageClients mortgageClients) {
-        if (mortgageValidationServiceIndividual.validationInn(mortgageClients.getInnInd())) {
+        if (individualInnValidationService.validationInn(mortgageClients.getInnInd()) && individualInnValidationService.validationInn(mortgageClients.getInnOfBuyers()) && organizationInnValidationService.validationInn(mortgageClients.getInnOrg())) {
             mortgageClientsService.create(mortgageClients);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.valueOf("Заявка создана успешно."));
         } else {
             String validationException = exception.getMessage();
             return new ResponseEntity<>(HttpStatus.valueOf(validationException));
