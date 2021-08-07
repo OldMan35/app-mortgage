@@ -44,7 +44,7 @@ public class MortgageController extends RuntimeException {
     public ResponseEntity<?> createMortgageClients(@RequestBody MortgageClients mortgageClients) {
         if (individualInnValidationService.validationInn(mortgageClients.getInnInd()) && individualInnValidationService.validationInn(mortgageClients.getInnOfBuyers()) && organizationInnValidationService.validationInn(mortgageClients.getInnOrg())) {
             mortgageClientsService.create(mortgageClients);
-            return new ResponseEntity<>("Заявка создана.", HttpStatus.OK);
+            return new ResponseEntity<>("Заявка создана.", HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("Введены не корректные данные.", HttpStatus.BAD_REQUEST);
         }

@@ -17,7 +17,8 @@ public class MortgageClients {
     public MortgageClients() {
     }
 
-    public MortgageClients(String nameOfBuyers, String patronymicOfBuyers, String surnameOfBuyers, String phoneNumberOfBuyers, long loanAmount, int loanTerm, String estateObject, long costObject, String innOfBuyers, String nameOfSellers, String patronymicOfSellers, String surnameOfSellers, String innInd, String nameOrganization, String innOrg, String ownRights) {
+    public MortgageClients(int id, String nameOfBuyers, String patronymicOfBuyers, String surnameOfBuyers, String phoneNumberOfBuyers, long loanAmount, int loanTerm, String estateObject, long costObject, String innOfBuyers, String nameOfSellers, String patronymicOfSellers, String surnameOfSellers, String innInd, String nameOrganization, String innOrg, String ownRights) {
+        this.id = id;
         this.nameOfBuyers = nameOfBuyers;
         this.patronymicOfBuyers = patronymicOfBuyers;
         this.surnameOfBuyers = surnameOfBuyers;
