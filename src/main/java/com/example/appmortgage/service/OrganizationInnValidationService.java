@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 import java.util.regex.Pattern;
 
 @Service
-public class MortgageValidationService {
+public class OrganizationInnValidationService {
 
-    private static final Pattern patternCheckInn = Pattern.compile("\\d{10}|\\d{12}");
-    private static final int[] checkArrInnOrg = new int[]{2, 4, 10, 3, 5, 9, 4, 6, 8};
-    private static final int[] checkArrInnIndiv = new int[]{3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8};
+    private  final Pattern patternCheckInn = Pattern.compile("\\d{10}|\\d{12}");
+    private  final int[] checkArrInnOrg = new int[]{2, 4, 10, 3, 5, 9, 4, 6, 8};
+    private  final int[] checkArrInnIndiv = new int[]{3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8};
 
-    public static boolean validationInn(String innIndiv, String innOrg) {
+    public boolean validationInn(String innIndiv, String innOrg) {
         innIndiv = innIndiv.trim();
         innOrg = innOrg.trim();
         if (!patternCheckInn.matcher(innIndiv).matches() && !patternCheckInn.matcher(innOrg).matches()) {
@@ -24,7 +24,7 @@ public class MortgageValidationService {
         }
     }
 
-    private static boolean INNStep(String innIndiv, int offset, int arrOffset) {
+    private boolean INNStep(String innIndiv, int offset, int arrOffset) {
         int sum = 0;
         int length = innIndiv.length();
         for (int i = 0; i < length - offset; i++) {
