@@ -20,11 +20,8 @@ public class testCheckIndividualInnValidationService {
         inn.trim();
         if (!patternCheckInn.matcher(inn).matches()) {
             return false;
-        }
-        if (inn.length() == 12) {
-            return checkNumber(inn, 2, 1) && checkNumber(inn, 1, 0);
         } else {
-            return checkNumber(inn, 1, 2);
+            return checkNumber(inn, 2, 1) && checkNumber(inn, 1, 0);
         }
     }
 

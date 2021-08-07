@@ -7,30 +7,25 @@ import java.util.regex.Pattern;
 @Service
 public class OrganizationInnValidationService {
 
-    private  final Pattern patternCheckInn = Pattern.compile("\\d{10}|\\d{12}");
-    private  final int[] checkArrInnOrg = new int[]{2, 4, 10, 3, 5, 9, 4, 6, 8};
-    private  final int[] checkArrInnIndiv = new int[]{3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8};
+    private final Pattern patternCheckInn = Pattern.compile("\\d{10}");
+    private final int[] checkArrInnOrganization = new int[]{2, 4, 10, 3, 5, 9, 4, 6, 8};
 
-    public boolean validationInn(String innIndiv, String innOrg) {
-        innIndiv = innIndiv.trim();
-        innOrg = innOrg.trim();
-        if (!patternCheckInn.matcher(innIndiv).matches() && !patternCheckInn.matcher(innOrg).matches()) {
+    public boolean validationInn(String innOrganization) {
+        innOrganization = innOrganization.trim();
+        if (!patternCheckInn.matcher(innOrganization).matches()) {
             return false;
-        }
-        if (innIndiv.length() == 12) {
-            return INNStep(innIndiv, 2, 1) && INNStep(innIndiv, 1, 0);
         } else {
-            return INNStep(innIndiv, 1, 2);
+            return checkNumber(innOrganization, 1);
         }
     }
 
-    private boolean INNStep(String innIndiv, int offset, int arrOffset) {
+    private boolean checkNumber(String innOrganization, int offset) {
         int sum = 0;
-        int length = innIndiv.length();
+        int length = innOrganization.length();
         for (int i = 0; i < length - offset; i++) {
-            sum += (innIndiv.charAt(i) - '0') * checkArrInnIndiv[i + arrOffset];
+            sum += (innOrganization.charAt(i) - '0') * checkArrInnOrganization[i];
         }
-        return (sum % 11) % 10 == innIndiv.charAt(length - offset) - '0';
+        return (sum % 11) % 10 == innOrganization.charAt(length - offset) - '0';
     }
 
 }

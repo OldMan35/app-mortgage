@@ -14,11 +14,8 @@ public class IndividualInnValidationService {
         innIndividual = innIndividual.trim();
         if (!patternCheckInn.matcher(innIndividual).matches()) {
             return false;
-        }
-        if (innIndividual.length() == 12) {
-            return checkNumber(innIndividual, 2, 1) && checkNumber(innIndividual, 1, 0);
         } else {
-            return checkNumber(innIndividual, 1, 2);
+            return checkNumber(innIndividual, 2, 1) && checkNumber(innIndividual, 1, 0);
         }
     }
 
