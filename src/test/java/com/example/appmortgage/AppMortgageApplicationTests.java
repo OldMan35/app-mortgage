@@ -55,7 +55,7 @@ class AppMortgageApplicationTests {
                 "ООО Рога и копыта",
                 "3525422150",
                 "Выписка из ЕГРН");
-        MvcResult result = this.mockMvc.perform(post("/mortgage/create").contentType((MediaType.APPLICATION_JSON_VALUE))
+        MvcResult result = this.mockMvc.perform(post("/mortgage/create").contentType((MediaType.APPLICATION_JSON))
                 .content(objectMapper.writeValueAsString(mortgageClients)))
                 .andDo(print())
                 .andExpect(status().isCreated())
@@ -80,7 +80,7 @@ class AppMortgageApplicationTests {
                 "Михайлов",
                 "502805064090",
                 "ООО Рога и копыта",
-                "3525422150555",
+                "3525422150555",         //notValidINN
                 "Выписка из ЕГРН");
         MvcResult result = this.mockMvc.perform(post("/mortgage/create").contentType((MediaType.APPLICATION_JSON))
                 .content(objectMapper.writeValueAsString(mortgageClients)))
@@ -100,7 +100,6 @@ class AppMortgageApplicationTests {
         MortgageClients[] mortgageClientsArray = objectMapper.readValue(content, MortgageClients[].class);
         MortgageClients mortgageClient = mortgageClientsArray[0];
         Assert.assertEquals("Vasilev", mortgageClient.getSurnameOfBuyers());
-        Assert.assertEquals("3525422150", mortgageClient.getInnOrg());
-
+        Assert.assertEquals("3525422150", mortgageClient.getInnOrg()); //check valid inn
     }
 }
