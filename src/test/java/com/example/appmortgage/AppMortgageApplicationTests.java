@@ -3,7 +3,6 @@ package com.example.appmortgage;
 
 import com.example.appmortgage.controller.MortgageController;
 import com.example.appmortgage.model.MortgageClients;
-import com.example.appmortgage.service.MortgageClientsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -14,12 +13,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.nio.charset.StandardCharsets;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -29,8 +27,6 @@ class AppMortgageApplicationTests {
 
     @Autowired
     private MortgageController mortgageController;
-    @Autowired
-    private MortgageClientsService mortgageClientsService;
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
@@ -45,7 +41,7 @@ class AppMortgageApplicationTests {
     public void testCreateValidRequestMortgage() throws Exception {
         MortgageClients mortgageClients = new MortgageClients(0, "Василий",
                 "Васильевич",
-                "Васильев",
+                "Vasilev",
                 "89116665533",
                 1500000,
                 5,
@@ -59,8 +55,9 @@ class AppMortgageApplicationTests {
                 "ООО Рога и копыта",
                 "3525422150",
                 "Выписка из ЕГРН");
-        MvcResult result = this.mockMvc.perform(post("/mortgage/create").contentType((MediaType.APPLICATION_JSON))
+        MvcResult result = this.mockMvc.perform(post("/mortgage/create").contentType((MediaType.APPLICATION_JSON_VALUE))
                 .content(objectMapper.writeValueAsString(mortgageClients)))
+                .andDo(print())
                 .andExpect(status().isCreated())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
@@ -87,6 +84,7 @@ class AppMortgageApplicationTests {
                 "Выписка из ЕГРН");
         MvcResult result = this.mockMvc.perform(post("/mortgage/create").contentType((MediaType.APPLICATION_JSON))
                 .content(objectMapper.writeValueAsString(mortgageClients)))
+                .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
@@ -95,28 +93,14 @@ class AppMortgageApplicationTests {
 
     @Test
     public void testTryGetAllButGetOne() throws Exception {
-        MortgageClients mortgageClients = new MortgageClients(0, "Василий",
-                "Васильевич",
-                "Васильев",
-                "89116665533",
-                1500000,
-                5,
-                "квартира",
-                2000000,
-                "502805064090",
-                "Михаил",
-                "Михайлович",
-                "Михайлов",
-                "502805064090",
-                "ООО Рога и копыта",
-                "3525422150",
-                "Выписка из ЕГРН");
-        mortgageClientsService.create(mortgageClients);
         MvcResult result = this.mockMvc.perform(get("/mortgage/get-all"))
+                .andDo(print())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
         MortgageClients[] mortgageClientsArray = objectMapper.readValue(content, MortgageClients[].class);
         MortgageClients mortgageClient = mortgageClientsArray[0];
-        Assert.assertEquals("2000000", mortgageClient.getSurnameOfBuyers());
+        Assert.assertEquals("Vasilev", mortgageClient.getSurnameOfBuyers());
+        Assert.assertEquals("3525422150", mortgageClient.getInnOrg());
+
     }
 }
