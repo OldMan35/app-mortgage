@@ -43,7 +43,7 @@ class AppMortgageApplicationTests {
     public void testCreateValidRequestMortgage() throws Exception {
         MortgageClients mortgageClients = new MortgageClients(0, "Василий",
                 "Васильевич",
-                "Vasilev",
+                "Васильев",
                 "89116665533",
                 1500000,
                 5,
@@ -67,9 +67,9 @@ class AppMortgageApplicationTests {
 
     @Test
     public void testCreateNotValidRequestMortgage() throws Exception {
-        MortgageClients mortgageClients = new MortgageClients(0, "Василий",
-                "Васильевич",
-                "Васильев",
+        MortgageClients mortgageClients = new MortgageClients(0, "Иван",
+                "Иванович",
+                "Иванов",
                 "89116665533",
                 1500000,
                 5,
@@ -99,6 +99,6 @@ class AppMortgageApplicationTests {
         String content = result.getResponse().getContentAsString();
         MortgageClients[] mortgageClientsArray = objectMapper.readValue(content, MortgageClients[].class);
         MortgageClients mortgageClient = mortgageClientsArray[0];
-        Assert.assertEquals("3525422150", mortgageClient.getInnOrg()); //check valid inn
+        Assert.assertEquals("502805064090", mortgageClient.getInnOrg()); //check valid inn of buyer
     }
 }
