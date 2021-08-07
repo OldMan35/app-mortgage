@@ -35,7 +35,7 @@ public class MortgageController extends RuntimeException {
         if (mortgageClientsList.size() != 0) {
             return ResponseEntity.ok().body(mortgageClientsList);
         } else {
-            return new ResponseEntity<>("Заявок нет.", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Заявок нет.", HttpStatus.OK);
         }
 
     }
