@@ -33,7 +33,7 @@ public class MortgageClients {
 
     @NotNull(message = "Обязательное для заполнения поле.")
     @Column(name = "loan_amount")
-    private String loanAmount;
+    private long loanAmount;
 
     @NotNull(message = "Обязательное для заполнения поле.")
     @Column(name = "loan_term")
@@ -45,7 +45,7 @@ public class MortgageClients {
 
     @NotNull(message = "Обязательное для заполнения поле.")
     @Column(name = "cost_object")
-    private int costObject;
+    private long costObject;
 
     @NotNull(message = "Обязательное для заполнения поле.")
     @Column(name = "inn_of_buyers")
