@@ -6,12 +6,10 @@ import com.example.appmortgage.service.IndividualInnValidationService;
 import com.example.appmortgage.service.OrganizationInnValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 
@@ -32,20 +30,23 @@ public class MortgageController extends RuntimeException {
     }
 
     @GetMapping(value = "/get-all")
-    public ResponseEntity<List<MortgageClients>> getAll() {
-        List<MortgageClients> mortgageClientsList = mortgageClientsService.findAll();
-        return mortgageClientsList != null && !mortgageClientsList.isEmpty()
-                ? new ResponseEntity<>(mortgageClientsList, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> getAll() {
+        List<MortgageClients> mortgageClientsList = mortgageClientsService.getAll();
+        if (mortgageClientsList.size() != 0) {
+            return ResponseEntity.ok().body(mortgageClientsList);
+        } else {
+            return new ResponseEntity<>("Заявок нет.", HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PostMapping(value = "/create")
     public ResponseEntity<?> createMortgageClients(@RequestBody MortgageClients mortgageClients) {
         if (individualInnValidationService.validationInn(mortgageClients.getInnInd()) && individualInnValidationService.validationInn(mortgageClients.getInnOfBuyers()) && organizationInnValidationService.validationInn(mortgageClients.getInnOrg())) {
             mortgageClientsService.create(mortgageClients);
-            return new ResponseEntity<>(HttpStatus.valueOf("Заявка создана успешно."));
+            return new ResponseEntity<>("Заявка создана.", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Введены не корректные данные.", HttpStatus.BAD_REQUEST);
         }
     }
 

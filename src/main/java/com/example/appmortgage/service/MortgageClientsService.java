@@ -18,7 +18,7 @@ public class MortgageClientsService {
         this.mortgageClientsRepository = mortgageClientsRepository;
     }
 
-    public List<MortgageClients> findAll() {
+    public List<MortgageClients> getAll() {
 
         return mortgageClientsRepository.findAll();
     }

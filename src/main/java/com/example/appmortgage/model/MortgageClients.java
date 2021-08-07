@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Table(name = "mortgage_clients")
 public class MortgageClients {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
