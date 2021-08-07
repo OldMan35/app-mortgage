@@ -22,13 +22,13 @@ public class testCheckIndividualInnValidationService {
             return false;
         }
         if (inn.length() == 12) {
-            return checkSum(inn, 2, 1) && checkSum(inn, 1, 0);
+            return checkNumber(inn, 2, 1) && checkNumber(inn, 1, 0);
         } else {
-            return checkSum(inn, 1, 2);
+            return checkNumber(inn, 1, 2);
         }
     }
 
-    private static boolean checkSum(String inn, int offset, int arrOffset) {
+    private static boolean checkNumber(String inn, int offset, int arrOffset) {
         int sum = 0;
         int length = inn.length();
         for (int i = 0; i < length - offset; i++) {
