@@ -65,7 +65,7 @@ class AppMortgageApplicationTests {
 
     @Test
     public void testCreateNotValidRequestMortgage() throws Exception {
-        MortgageClients mortgageClients = new MortgageClients(0, "Иван",
+        MortgageClients mortgageClients = new MortgageClients(0, null, //null
                 "Иванович",
                 "Иванов",
                 "89116665533",
