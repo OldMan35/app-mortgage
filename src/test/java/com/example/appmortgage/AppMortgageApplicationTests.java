@@ -97,6 +97,6 @@ class AppMortgageApplicationTests {
         String content = result.getResponse().getContentAsString();
         MortgageClients[] mortgageClientsArray = objectMapper.readValue(content, MortgageClients[].class);
         MortgageClients mortgageClient = mortgageClientsArray[0];
-        Assert.assertEquals("502805064090", mortgageClient.getInnOfBuyers()); //check valid inn of buyer
+        Assert.assertEquals("502805064090", mortgageClient.getInnOfBuyers()); //getting the buyers by inn
     }
 }
