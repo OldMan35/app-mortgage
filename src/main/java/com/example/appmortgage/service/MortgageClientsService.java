@@ -19,7 +19,6 @@ public class MortgageClientsService {
     }
 
     public List<MortgageClients> getAll() {
-
         return mortgageClientsRepository.findAll();
     }
 
