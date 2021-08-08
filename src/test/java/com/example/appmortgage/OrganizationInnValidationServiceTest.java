@@ -1,6 +1,6 @@
- package com.example.appmortgage.service;
+package com.example.appmortgage;
 
-import com.example.appmortgage.model.MortgageClients;
+import com.example.appmortgage.service.OrganizationInnValidationService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,15 +8,15 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class IndividualInnValidationServiceTest {
+public class OrganizationInnValidationServiceTest {
 
     @InjectMocks
-    private IndividualInnValidationService validationService;
+    private OrganizationInnValidationService validationService;
 
     @Test
     public void innValidTest() {
         //given
-        String inn = "502805064090";
+        String inn = "3525422150";
         //when
         boolean result = validationService.validationInn(inn);
         //then
@@ -26,7 +26,7 @@ public class IndividualInnValidationServiceTest {
     @Test
     public void innNotValidTest() {
         //given
-        String inn = "ggg805064090";
+        String inn = "ggg3525422150";
         //when
         boolean result = validationService.validationInn(inn);
         //then
