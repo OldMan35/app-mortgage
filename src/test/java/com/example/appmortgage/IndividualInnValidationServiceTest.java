@@ -1,6 +1,5 @@
  package com.example.appmortgage;
 
-import com.example.appmortgage.model.MortgageClients;
 import com.example.appmortgage.service.IndividualInnValidationService;
 import org.junit.Assert;
 import org.junit.Test;
