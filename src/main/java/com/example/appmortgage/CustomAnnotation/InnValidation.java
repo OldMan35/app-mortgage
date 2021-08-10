@@ -1,13 +1,11 @@
-package com.example.appmortgage.repository;
-
-import com.example.appmortgage.service.InnValidationService;
+package com.example.appmortgage.CustomAnnotation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = InnValidationService.class)
+@Constraint(validatedBy = com.example.appmortgage.common.InnValidation.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 

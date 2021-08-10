@@ -1,20 +1,19 @@
-package com.example.appmortgage.service;
+package com.example.appmortgage.common;
 
-import com.example.appmortgage.repository.InnValidation;
-import org.springframework.stereotype.Service;
+
+
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Pattern;
 
-@Service
-public class InnValidationService implements ConstraintValidator<InnValidation, String> {
+public class InnValidation implements ConstraintValidator<com.example.appmortgage.CustomAnnotation.InnValidation, String> {
 
     private static final Pattern innPatter = Pattern.compile("\\d{10}|\\d{12}");
     private static final int[] checkArr = new int[]{3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8};
 
     @Override
-    public void initialize(InnValidation innValidation) {
+    public void initialize(com.example.appmortgage.CustomAnnotation.InnValidation innValidation) {
     }
 
     @Override

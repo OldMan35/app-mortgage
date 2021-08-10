@@ -1,7 +1,6 @@
 package com.example.appmortgage.controller;
 
 import com.example.appmortgage.model.MortgageClients;
-import com.example.appmortgage.service.InnValidationService;
 import com.example.appmortgage.service.MortgageClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +17,11 @@ import java.util.List;
 public class MortgageController {
 
     private final MortgageClientsService mortgageClientsService;
-    private final InnValidationService innValidationService;
+
 
     @Autowired
-    public MortgageController(MortgageClientsService mortgageClientsService, InnValidationService innValidationService) {
+    public MortgageController(MortgageClientsService mortgageClientsService) {
         this.mortgageClientsService = mortgageClientsService;
-        this.innValidationService = innValidationService;
     }
 
     @GetMapping(value = "/get-all")

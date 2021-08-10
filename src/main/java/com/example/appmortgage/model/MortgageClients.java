@@ -1,7 +1,8 @@
 package com.example.appmortgage.model;
 
 
-import com.example.appmortgage.repository.InnValidation;
+import com.example.appmortgage.CustomAnnotation.InnValidation;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Entity
+@Builder
 @Table(name = "mortgage_clients")
 public class MortgageClients {
 

@@ -13,9 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
-import java.util.List;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -90,7 +87,8 @@ class AppMortgageApplicationTests {
                 .andExpect(status().isBadRequest())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assert.assertEquals("Введены не корректные данные.", content);
+        Assert.assertEquals("Поле не может быть пустым.", content);
+        Assert.assertEquals("Введено некорректное значение ИНН.", content);
     }
 
     @Test
