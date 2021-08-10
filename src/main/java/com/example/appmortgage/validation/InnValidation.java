@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 
-public @interface InnValidationInterface {
+public @interface InnValidation {
 
     String message() default "Введено некорректное значение ИНН.";
 

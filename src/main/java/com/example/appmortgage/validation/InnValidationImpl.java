@@ -7,13 +7,13 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Pattern;
 
-public class InnValidationImpl implements ConstraintValidator<InnValidationInterface, String> {
+public class InnValidationImpl implements ConstraintValidator<InnValidation, String> {
 
     private static final Pattern innPatter = Pattern.compile("\\d{10}|\\d{12}");
     private static final int[] checkArr = new int[]{3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8};
 
     @Override
-    public void initialize(InnValidationInterface innValidation) {
+    public void initialize(InnValidation innValidation) {
     }
 
     @Override

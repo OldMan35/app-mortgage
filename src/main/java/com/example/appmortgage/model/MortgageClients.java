@@ -1,7 +1,7 @@
 package com.example.appmortgage.model;
 
 
-import com.example.appmortgage.validation.InnValidationInterface;
+import com.example.appmortgage.validation.InnValidation;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -76,7 +76,7 @@ public class MortgageClients {
     private long costObject;
 
     @NotNull
-    @InnValidationInterface
+    @InnValidation
     @Column(name = "inn_of_buyers")
     private String innOfBuyers;
 
@@ -94,7 +94,7 @@ public class MortgageClients {
 
     @NotNull
     @Column(name = "inn_ind")
-    @InnValidationInterface
+    @InnValidation
     private String innInd;
 
     @NotNull
@@ -103,7 +103,7 @@ public class MortgageClients {
 
     @NotNull
     @Column(name = "inn_org")
-    @InnValidationInterface
+    @InnValidation
     private String innOrg;
 
     @NotNull
