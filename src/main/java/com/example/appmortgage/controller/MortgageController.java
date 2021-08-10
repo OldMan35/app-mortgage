@@ -1,6 +1,7 @@
 package com.example.appmortgage.controller;
 
 import com.example.appmortgage.model.MortgageClients;
+import com.example.appmortgage.service.InnValidationService;
 import com.example.appmortgage.service.MortgageClientsService;
 import com.example.appmortgage.service.IndividualInnValidationService;
 import com.example.appmortgage.service.OrganizationInnValidationService;
@@ -19,14 +20,16 @@ import java.util.List;
 public class MortgageController {
 
     private final MortgageClientsService mortgageClientsService;
-    private final IndividualInnValidationService individualInnValidationService;
-    private final OrganizationInnValidationService organizationInnValidationService;
+    private final IndividualInnValidationService individualInnValidationService;//
+    private final OrganizationInnValidationService organizationInnValidationService;//
+    private final InnValidationService innValidationService;
 
     @Autowired
-    public MortgageController(MortgageClientsService mortgageClientsService, IndividualInnValidationService mortgageValidationService, OrganizationInnValidationService organizationInnValidationService) {
+    public MortgageController(MortgageClientsService mortgageClientsService, IndividualInnValidationService mortgageValidationService, OrganizationInnValidationService organizationInnValidationService, InnValidationService innValidationService) {
         this.mortgageClientsService = mortgageClientsService;
         this.individualInnValidationService = mortgageValidationService;
         this.organizationInnValidationService = organizationInnValidationService;
+        this.innValidationService = innValidationService;
     }
 
     @GetMapping(value = "/get-all")
@@ -42,7 +45,7 @@ public class MortgageController {
 
     @PostMapping(value = "/create")
     public ResponseEntity<?> createMortgageClients(@RequestBody MortgageClients mortgageClients) {
-        if (individualInnValidationService.validationInn(mortgageClients.getInnInd()) && individualInnValidationService.validationInn(mortgageClients.getInnOfBuyers()) && organizationInnValidationService.validationInn(mortgageClients.getInnOrg())) {
+        if (innValidationService.isValid(mortgageClients.getInnInd(), massage) && individualInnValidationService.validationInn(mortgageClients.getInnOfBuyers()) && organizationInnValidationService.validationInn(mortgageClients.getInnOrg())) {
             mortgageClientsService.create(mortgageClients);
             return new ResponseEntity<>("Заявка создана.", HttpStatus.CREATED);
         } else {

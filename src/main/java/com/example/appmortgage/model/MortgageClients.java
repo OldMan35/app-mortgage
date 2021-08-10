@@ -1,6 +1,7 @@
 package com.example.appmortgage.model;
 
 
+import com.example.appmortgage.common.InnValidation;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -73,6 +74,7 @@ public class MortgageClients {
     private long costObject;
 
     @NotNull
+    @InnValidation
     @Column(name = "inn_of_buyers")
     private String innOfBuyers;
 
