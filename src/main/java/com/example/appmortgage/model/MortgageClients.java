@@ -92,6 +92,7 @@ public class MortgageClients {
 
     @NotNull
     @Column(name = "inn_ind")
+    @InnValidation
     private String innInd;
 
     @NotNull
@@ -100,6 +101,7 @@ public class MortgageClients {
 
     @NotNull
     @Column(name = "inn_org")
+    @InnValidation
     private String innOrg;
 
     @NotNull

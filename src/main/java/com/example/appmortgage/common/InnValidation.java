@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 
 public @interface InnValidation {
 
-    String message() default "{Inn}";
+    String message() default "Введено не корректное значение ИНН.";
 
     Class<?>[] groups() default {};
 

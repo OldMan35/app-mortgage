@@ -45,7 +45,7 @@ public class MortgageController {
 
     @PostMapping(value = "/create")
     public ResponseEntity<?> createMortgageClients(@RequestBody MortgageClients mortgageClients) {
-        if (innValidationService.isValid(mortgageClients.getInnInd(), massage) && individualInnValidationService.validationInn(mortgageClients.getInnOfBuyers()) && organizationInnValidationService.validationInn(mortgageClients.getInnOrg())) {
+        if (innValidationService.isValid(mortgageClients.getInnInd(), null) && individualInnValidationService.validationInn(mortgageClients.getInnOfBuyers()) && organizationInnValidationService.validationInn(mortgageClients.getInnOrg())) {
             mortgageClientsService.create(mortgageClients);
             return new ResponseEntity<>("Заявка создана.", HttpStatus.CREATED);
         } else {
