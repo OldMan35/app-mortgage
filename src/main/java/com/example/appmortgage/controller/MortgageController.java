@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @Validated
 @RequestMapping(value = "/mortgage")
-public class MortgageController extends RuntimeException {
+public class MortgageController {
 
     private final MortgageClientsService mortgageClientsService;
     private final IndividualInnValidationService individualInnValidationService;

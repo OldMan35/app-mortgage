@@ -3,6 +3,7 @@ package com.example.appmortgage;
 
 import com.example.appmortgage.controller.MortgageController;
 import com.example.appmortgage.model.MortgageClients;
+import com.example.appmortgage.service.MortgageClientsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -97,6 +100,6 @@ class AppMortgageApplicationTests {
         String content = result.getResponse().getContentAsString();
         MortgageClients[] mortgageClientsArray = objectMapper.readValue(content, MortgageClients[].class);
         MortgageClients mortgageClient = mortgageClientsArray[0];
-        Assert.assertEquals("502805064090", mortgageClient.getInnOfBuyers()); //getting the buyers by inn
+        Assert.assertEquals("502805064090", mortgageClient.getInnOfBuyers());//getting the buyers by inn
     }
 }
