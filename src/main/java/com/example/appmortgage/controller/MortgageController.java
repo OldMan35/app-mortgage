@@ -37,8 +37,14 @@ public class MortgageController {
 
     @PostMapping(value = "/create")
     public ResponseEntity<?> createMortgageClients(@RequestBody MortgageClients mortgageClients) {
-        mortgageClientsService.create(mortgageClients);
-        return new ResponseEntity<>("Заявка создана.", HttpStatus.CREATED);
+
+        if (){
+            mortgageClientsService.create(mortgageClients);
+            return new ResponseEntity<>("Заявка создана.", HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Некорректные данные.", HttpStatus.BAD_REQUEST)
+        }
+
     }
 
 }

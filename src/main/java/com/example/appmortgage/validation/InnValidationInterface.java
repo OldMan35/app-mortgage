@@ -1,15 +1,15 @@
-package com.example.appmortgage.CustomAnnotation;
+package com.example.appmortgage.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = com.example.appmortgage.common.InnValidation.class)
+@Constraint(validatedBy = InnValidationImpl.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 
-public @interface InnValidation {
+public @interface InnValidationInterface {
 
     String message() default "Введено некорректное значение ИНН.";
 

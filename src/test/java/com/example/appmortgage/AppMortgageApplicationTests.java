@@ -65,7 +65,9 @@ class AppMortgageApplicationTests {
 
     @Test
     public void testCreateNotValidRequestMortgage() throws Exception {
-        MortgageClients mortgageClients = new MortgageClients(0, null, //null
+        MortgageClients mortgageClients = new MortgageClients(
+                0,
+                null, //null
                 "Иванович",
                 "Иванов",
                 "89116665533",
@@ -87,8 +89,8 @@ class AppMortgageApplicationTests {
                 .andExpect(status().isBadRequest())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assert.assertEquals("Поле не может быть пустым.", content);
         Assert.assertEquals("Введено некорректное значение ИНН.", content);
+        Assert.assertEquals("Поле не может быть пустым.", content);
     }
 
     @Test
