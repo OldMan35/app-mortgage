@@ -49,8 +49,8 @@ public class MortgageController {
     public class ExceptionHelper {
 
         @ExceptionHandler(value = {ValidationException.class})
-        public ResponseEntity<Object> handleInvalidInputException(NotNull ex) {
-            return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        public ResponseEntity<Object> handleInvalidInputException(Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 }
