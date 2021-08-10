@@ -3,9 +3,9 @@ package com.example.appmortgage;
 
 import com.example.appmortgage.controller.MortgageController;
 import com.example.appmortgage.model.MortgageClients;
-import com.example.appmortgage.service.MortgageClientsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -60,14 +61,14 @@ class AppMortgageApplicationTests {
                 .andExpect(status().isCreated())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assert.assertEquals("Заявка создана.", content);
+        Assert.assertEquals("Заявка создана", content);
     }
 
     @Test
     public void testCreateNotValidRequestMortgage() throws Exception {
         MortgageClients mortgageClients = new MortgageClients(
                 0,
-                null, //null
+                null,                 //null
                 "Иванович",
                 "Иванов",
                 "89116665533",
@@ -75,13 +76,13 @@ class AppMortgageApplicationTests {
                 5,
                 "квартира",
                 2000000,
-                "502805064090",
-                "Михаил",
+                "502805064090ffff",     //notValidINN
+                null,                 //null
                 "Михайлович",
                 "Михайлов",
-                "502805064090",
+                "502805064090ffff",        //notValidINN
                 "ООО Рога и копыта",
-                "3525422150ддд",         //notValidINN
+                "3525422150fffff",         //notValidINN
                 "Выписка из ЕГРН");
         MvcResult result = this.mockMvc.perform(post("/mortgage/create").contentType((MediaType.APPLICATION_JSON))
                 .content(objectMapper.writeValueAsString(mortgageClients)))
@@ -89,7 +90,8 @@ class AppMortgageApplicationTests {
                 .andExpect(status().is4xxClientError())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assert.assertEquals("Введено некорректное значение ИНН.", content);
+        Assertions.assertTrue(content.contains("Incorrect INN"));
+        Assertions.assertTrue(content.contains("The field cannot be empty"));
     }
 
     @Test

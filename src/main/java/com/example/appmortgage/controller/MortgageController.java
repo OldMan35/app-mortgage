@@ -5,13 +5,9 @@ import com.example.appmortgage.service.MortgageClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
-import javax.validation.Valid;
-import javax.validation.ValidationException;
 import java.util.List;
 
 
@@ -40,20 +36,9 @@ public class MortgageController {
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity<?> createMortgageClients(@Valid @RequestBody MortgageClients mortgageClients, BindingResult result) {
-        if (result.hasFieldErrors()) {
-            throw new ValidationException();
-        } else {
-            mortgageClientsService.create(mortgageClients);
-            return new ResponseEntity<>("Заявка создана", HttpStatus.CREATED);
-        }
-    }
-
-    @ControllerAdvice
-    public class ExceptionHelper {
-        @ExceptionHandler(value = {ValidationException.class})
-        public ResponseEntity<Object> handleInvalidInputException(Exception ex) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<?> createMortgageClients(@RequestBody MortgageClients mortgageClients) {
+        mortgageClientsService.create(mortgageClients);
+        return new ResponseEntity<>("Заявка создана", HttpStatus.CREATED);
     }
 }
+
