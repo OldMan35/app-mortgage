@@ -5,6 +5,7 @@ import com.example.appmortgage.controller.MortgageController;
 import com.example.appmortgage.model.MortgageClients;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
