@@ -42,7 +42,7 @@ public class MortgageController {
     @PostMapping(value = "/create")
     public ResponseEntity<?> createMortgageClients(@Valid @RequestBody MortgageClients mortgageClients, BindingResult result) {
         if (result.hasFieldErrors()) {
-            throw new ValidationException("Некорректные данные");
+            throw new ValidationException();
         } else {
             mortgageClientsService.create(mortgageClients);
             return new ResponseEntity<>("Заявка создана", HttpStatus.CREATED);
