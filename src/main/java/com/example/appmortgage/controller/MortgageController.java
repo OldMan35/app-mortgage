@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.validation.ValidationException;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 
@@ -37,14 +40,17 @@ public class MortgageController {
 
     @PostMapping(value = "/create")
     public ResponseEntity<?> createMortgageClients(@RequestBody MortgageClients mortgageClients) {
-
-        if (){
-            mortgageClientsService.create(mortgageClients);
-            return new ResponseEntity<>("Заявка создана.", HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>("Некорректные данные.", HttpStatus.BAD_REQUEST);
-        }
+        mortgageClientsService.create(mortgageClients);
+        return new ResponseEntity<>("Заявка создана.", HttpStatus.CREATED);
 
     }
 
+    @ControllerAdvice
+    public class ExceptionHelper {
+
+        @ExceptionHandler(value = {ValidationException.class})
+        public ResponseEntity<Object> handleInvalidInputException(NotNull ex) {
+            return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }
