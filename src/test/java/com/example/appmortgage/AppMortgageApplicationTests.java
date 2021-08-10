@@ -89,8 +89,7 @@ class AppMortgageApplicationTests {
                 .andExpect(status().isBadRequest())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assert.assertEquals("Введено некорректное значение ИНН.", content);
-        Assert.assertEquals("Поле не может быть пустым.", content);
+        Assert.assertEquals("Некорректные данные.", content);
     }
 
     @Test

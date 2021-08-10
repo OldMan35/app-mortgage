@@ -42,7 +42,7 @@ public class MortgageController {
             mortgageClientsService.create(mortgageClients);
             return new ResponseEntity<>("Заявка создана.", HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>("Некорректные данные.", HttpStatus.BAD_REQUEST)
+            return new ResponseEntity<>("Некорректные данные.", HttpStatus.BAD_REQUEST);
         }
 
     }
