@@ -1,7 +1,7 @@
 package com.example.appmortgage.model;
 
 
-import com.example.appmortgage.common.InnValidation;
+import com.example.appmortgage.repository.InnValidation;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,4 @@
-package com.example.appmortgage.common;
+package com.example.appmortgage.repository;
 
 import com.example.appmortgage.service.InnValidationService;
 
@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 
 public @interface InnValidation {
 
-    String message() default "Введено не корректное значение ИНН.";
+    String message() default "Введено некорректное значение ИНН.";
 
     Class<?>[] groups() default {};
 

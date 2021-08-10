@@ -1,11 +1,13 @@
 package com.example.appmortgage.service;
 
-import com.example.appmortgage.common.InnValidation;
+import com.example.appmortgage.repository.InnValidation;
+import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Pattern;
 
+@Service
 public class InnValidationService implements ConstraintValidator<InnValidation, String> {
 
     private static final Pattern innPatter = Pattern.compile("\\d{10}|\\d{12}");
