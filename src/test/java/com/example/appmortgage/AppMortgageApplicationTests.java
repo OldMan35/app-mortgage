@@ -67,7 +67,7 @@ class AppMortgageApplicationTests {
     public void testCreateNotValidRequestMortgage() throws Exception {
         MortgageClients mortgageClients = new MortgageClients(
                 0,
-                null, //null
+                "Иван", //null
                 "Иванович",
                 "Иванов",
                 "89116665533",
@@ -81,16 +81,16 @@ class AppMortgageApplicationTests {
                 "Михайлов",
                 "502805064090",
                 "ООО Рога и копыта",
-                "3525422150555",         //notValidINN
+                "3525422150лл",         //notValidINN
                 "Выписка из ЕГРН");
         MvcResult result = this.mockMvc.perform(post("/mortgage/create").contentType((MediaType.APPLICATION_JSON))
                 .content(objectMapper.writeValueAsString(mortgageClients)))
                 .andDo(print())
-                .andExpect(status().isBadRequest())
+                .andExpect(status().is4xxClientError())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
         Assert.assertEquals("Введено некорректное значение ИНН.", content);
-        Assert.assertEquals("Поле не может быть пустым.", content);
+//        Assert.assertEquals("Поле не может быть пустым.", content);
     }
 
     @Test
