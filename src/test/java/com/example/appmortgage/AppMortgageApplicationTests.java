@@ -4,7 +4,6 @@ package com.example.appmortgage;
 import com.example.appmortgage.controller.MortgageController;
 import com.example.appmortgage.model.MortgageClients;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Builder;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
