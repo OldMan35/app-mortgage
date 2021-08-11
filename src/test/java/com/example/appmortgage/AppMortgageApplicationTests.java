@@ -4,9 +4,8 @@ package com.example.appmortgage;
 import com.example.appmortgage.controller.MortgageController;
 import com.example.appmortgage.model.MortgageClients;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import junit.framework.TestSuite;
+import lombok.Builder;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -44,22 +43,25 @@ class AppMortgageApplicationTests {
     @Test
     @Order(2)
     public void testCreateValidRequestMortgage() throws Exception {
-        MortgageClients mortgageClients = new MortgageClients(0, "Василий",
-                "Васильевич",
-                "Васильев",
-                "89116665533",
-                1500000,
-                5,
-                "квартира",
-                2000000,
-                "502805064090",
-                "Михаил",
-                "Михайлович",
-                "Михайлов",
-                "502805064090",
-                "ООО Рога и копыта",
-                "3525422150",
-                "Выписка из ЕГРН");
+        MortgageClients mortgageClients = MortgageClients.builder()
+                .id(0)
+                .nameOfBuyers("Василий")
+                .patronymicOfBuyers("Васильевич")
+                .surnameOfBuyers("Васильев")
+                .phoneNumberOfBuyers("89116665533")
+                .loanAmount(1500000)
+                .loanTerm(5)
+                .estateObject("квартира")
+                .costObject(2000000)
+                .innOfBuyers("502805064090")
+                .nameOfSellers("Михаил")
+                .patronymicOfSellers("Михайлович")
+                .surnameOfSellers("Михайлов")
+                .innInd("502805064090")
+                .nameOrganization("ООО Рога и копыта")
+                .innOrg("3525422150")
+                .ownRights("Выписка из ЕГРН")
+                .build();
         MvcResult result = this.mockMvc.perform(post("/mortgage/create").contentType((MediaType.APPLICATION_JSON))
                 .content(objectMapper.writeValueAsString(mortgageClients)))
                 .andExpect(status().isCreated())
@@ -71,24 +73,25 @@ class AppMortgageApplicationTests {
     @Test
     @Order(3)
     public void testCreateNotValidRequestMortgage() throws Exception {
-        MortgageClients mortgageClients = new MortgageClients(
-                0,
-                null,                 //null
-                "Иванович",
-                "Иванов",
-                "89116665533",
-                1500000,
-                5,
-                "квартира",
-                2000000,
-                "502805064090ffff",     //notValidINN
-                null,                 //null
-                "Михайлович",
-                "Михайлов",
-                "502805064090ffff",        //notValidINN
-                "ООО Рога и копыта",
-                "3525422150fffff",         //notValidINN
-                "Выписка из ЕГРН");
+        MortgageClients mortgageClients = MortgageClients.builder()
+                .id(0)
+                .nameOfBuyers(null)                   //null
+                .patronymicOfBuyers("Васильевич")
+                .surnameOfBuyers(null)                //null
+                .phoneNumberOfBuyers("89116665533")
+                .loanAmount(1500000)
+                .loanTerm(5)
+                .estateObject("квартира")
+                .costObject(2000000)
+                .innOfBuyers("502805064090")
+                .nameOfSellers("Михаил")
+                .patronymicOfSellers("Михайлович")
+                .surnameOfSellers("Михайлов")
+                .innInd("502805064090f")              //not valid inn
+                .nameOrganization("ООО Рога и копыта")
+                .innOrg("3525422150fff")              //not valid inn
+                .ownRights("Выписка из ЕГРН")
+                .build();
         MvcResult result = this.mockMvc.perform(post("/mortgage/create").contentType((MediaType.APPLICATION_JSON))
                 .content(objectMapper.writeValueAsString(mortgageClients)))
                 .andDo(print())

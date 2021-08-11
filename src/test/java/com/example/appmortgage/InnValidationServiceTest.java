@@ -3,22 +3,17 @@ package com.example.appmortgage;
 import com.example.appmortgage.validation.InnValidationImpl;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnitRunner;
 
-@RunWith(MockitoJUnitRunner.class)
 public class InnValidationServiceTest {
 
-//    @InjectMocks
-//    private InnValidationImpl innValidation;
+//    private InnValidationImpl innValidation = new InnValidationImpl();
 //
 //    @Test
 //    public void innValidTest() {
 //        //given
 //        String inn = "502805064090";
 //        //when
-//        boolean result = innValidation.isValid(inn,);
+//        boolean result = innValidation.isValid(inn, );
 //        //then
 //        Assert.assertTrue(result);
 //    }
@@ -28,7 +23,7 @@ public class InnValidationServiceTest {
 //        //given
 //        String inn = "ggg805064090";
 //        //when
-//        boolean result = validationService.validationInn(inn);
+//        boolean result = innValidation.isValid(inn);
 //        //then
 //        Assert.assertFalse(result);
 //    }

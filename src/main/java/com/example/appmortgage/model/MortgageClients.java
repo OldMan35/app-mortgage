@@ -2,9 +2,7 @@ package com.example.appmortgage.model;
 
 
 import com.example.appmortgage.validation.InnValidation;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,31 +11,10 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "mortgage_clients")
 public class MortgageClients {
-
-    public MortgageClients() {
-    }
-
-    public MortgageClients(int id, String nameOfBuyers, String patronymicOfBuyers, String surnameOfBuyers, String phoneNumberOfBuyers, long loanAmount, int loanTerm, String estateObject, long costObject, String innOfBuyers, String nameOfSellers, String patronymicOfSellers, String surnameOfSellers, String innInd, String nameOrganization, String innOrg, String ownRights) {
-        this.id = id;
-        this.nameOfBuyers = nameOfBuyers;
-        this.patronymicOfBuyers = patronymicOfBuyers;
-        this.surnameOfBuyers = surnameOfBuyers;
-        this.phoneNumberOfBuyers = phoneNumberOfBuyers;
-        this.loanAmount = loanAmount;
-        this.loanTerm = loanTerm;
-        this.estateObject = estateObject;
-        this.costObject = costObject;
-        this.innOfBuyers = innOfBuyers;
-        this.nameOfSellers = nameOfSellers;
-        this.patronymicOfSellers = patronymicOfSellers;
-        this.surnameOfSellers = surnameOfSellers;
-        this.innInd = innInd;
-        this.nameOrganization = nameOrganization;
-        this.innOrg = innOrg;
-        this.ownRights = ownRights;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
