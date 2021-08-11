@@ -17,7 +17,7 @@ class MortgageClientsServiceTest {
     private MortgageClientsService mortgageClientsService;
 
     @Test
-    public void createValidRequest() {
+    public void create() {
         MortgageClients mortgageClients = MortgageClients.builder()
                 .id(0)
                 .nameOfBuyers("Василий")
