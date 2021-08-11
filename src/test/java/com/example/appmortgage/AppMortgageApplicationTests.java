@@ -4,10 +4,10 @@ package com.example.appmortgage;
 import com.example.appmortgage.controller.MortgageController;
 import com.example.appmortgage.model.MortgageClients;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import junit.framework.TestSuite;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AppMortgageApplicationTests {
 
     @Autowired
@@ -35,11 +36,13 @@ class AppMortgageApplicationTests {
     private MockMvc mockMvc;
 
     @Test
+    @Order(1)
     public void mortgageControllerTest() throws Exception {
         assertThat(mortgageController).isNotNull();
     }
 
     @Test
+    @Order(2)
     public void testCreateValidRequestMortgage() throws Exception {
         MortgageClients mortgageClients = new MortgageClients(0, "Василий",
                 "Васильевич",
@@ -66,6 +69,7 @@ class AppMortgageApplicationTests {
     }
 
     @Test
+    @Order(3)
     public void testCreateNotValidRequestMortgage() throws Exception {
         MortgageClients mortgageClients = new MortgageClients(
                 0,
@@ -96,6 +100,7 @@ class AppMortgageApplicationTests {
     }
 
     @Test
+    @Order(4)
     public void testTryGetAllButGetOne() throws Exception {
         MvcResult result = this.mockMvc.perform(get("/mortgage/get-all"))
                 .andReturn();
